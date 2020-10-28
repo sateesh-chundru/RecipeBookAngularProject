@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, EventEmitter, Output } from "@angular/core";
 
 @Component({
     templateUrl:"./header.component.html",
@@ -6,5 +6,15 @@ import { Component } from "@angular/core";
     styleUrls:['./header.component.css']
 })
 export class HeaderComponent{
+    @Output("showRecipes") showReciepeEmitter: EventEmitter<any> = new EventEmitter();
+    @Output("showShoppingList") showShoppingListEmitter: EventEmitter<any> = new EventEmitter();
+
+    showRecipes(){
+        this.showReciepeEmitter.emit(true);
+    }
+
+    showShoppingList(){
+        this.showShoppingListEmitter.emit(true);
+    }
 
 }
