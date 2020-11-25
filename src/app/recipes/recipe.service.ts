@@ -9,16 +9,19 @@ export class RecipeSevice {
      recipesChanged = new Subject<Recipe[] >();
 
     constructor(private slService: ShoppingListService){}
-    recipes: Recipe[] = [
-        new Recipe('A Test recipe', 'Test Recipe for testing',
-            'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg',
-            [new Ingredient('Meat', 1),
-            new Ingredient('Freach fries', 1)]),
-        new Recipe('A Test recipe', 'Test Recipe for testing',
-            'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg',
-            [new Ingredient('Buns', 1),
-            new Ingredient('Meat', 1)])
-    ];
+    // recipes: Recipe[] = [
+    //     new Recipe('A Test recipe', 'Test Recipe for testing',
+    //         'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg',
+    //         [new Ingredient('Meat', 1),
+    //         new Ingredient('Freach fries', 1)]),
+    //     new Recipe('A Test recipe', 'Test Recipe for testing',
+    //         'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg',
+    //         [new Ingredient('Buns', 1),
+    //         new Ingredient('Meat', 1)])
+    // ];
+
+
+    recipes: Recipe[] =[];
 
     getRecipes() {
         return this.recipes.slice();
@@ -45,6 +48,12 @@ export class RecipeSevice {
 
     deleteRecipe(index:number){
         this.recipes.splice(index,1)
+        this.recipesChanged.next(this.getRecipes());
+
+    }
+
+    setRecipes(recipes : Recipe[]){
+        this.recipes=recipes;
         this.recipesChanged.next(this.getRecipes());
 
     }

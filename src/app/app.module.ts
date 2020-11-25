@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
@@ -36,8 +37,9 @@ import { RecipeSevice } from './recipes/recipe.service';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
+    HttpClientModule,
     ReactiveFormsModule
-  ],
+    ],
   providers: [ShoppingListService,  RecipeSevice],
   bootstrap: [AppComponent]
 })
