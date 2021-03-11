@@ -50,25 +50,23 @@ user = new BehaviorSubject<User>(null);
         }).pipe(
             catchError(this.handleError),
             tap(resData =>{
-                debugger;
                 this.handleAuthentication(resData);
             })
         );
       }
 
       autoLogin(){
-          debugger;
        const userData:{
            email:string,
            id:string,
            _token:string,
-           _tokenExpirationDate: Date
+           _tokenExpirationDate: string
        }= JSON.parse(localStorage.getItem('userData'));
        if(!userData){
     return
        }
 
-       const loadedUser =new User(userData.email,userData.id,userData._token, new Date(userData._tokenExipirationDate));
+       const loadedUser =new User(userData.email,userData.id,userData._token, new Date(userData._tokenExpirationDate));
 
        if(loadedUser.token){
            this.user.next(loadedUser);

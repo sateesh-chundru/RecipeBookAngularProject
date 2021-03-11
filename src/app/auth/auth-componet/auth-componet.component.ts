@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { AuthService, AuthResponseData } from '../auth.service';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Route } from '@angular/compiler/src/core';
-import { RouterLink, Router } from '@angular/router';
+import { AuthResponseData, AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-auth-componet',
@@ -44,7 +43,6 @@ export class AuthComponent {
       },
       errorMessage => {
         console.log(errorMessage);
-        debugger;
        this.error=errorMessage;
         this.isLoading = false;
       });
