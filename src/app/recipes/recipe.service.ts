@@ -3,12 +3,15 @@ import { Subject } from "rxjs";
 import { Ingredient } from "../shared/ingredient.model";
 import { ShoppingListService } from "../shopping-list/shopping-list.service";
 import { Recipe } from "./recipe.model";
+import { Store } from "@ngrx/store";
+import * as ShoppingListActions from '../shopping-list/shopping-list.actions'
 
 @Injectable()
 export class RecipeSevice {
      recipesChanged = new Subject<Recipe[] >();
 
-    constructor(private slService: ShoppingListService){}
+    constructor(private slService: ShoppingListService,
+        private store:Store<{shoppingList: {ingredients: Ingredient[]}}>){}
     // recipes: Recipe[] = [
     //     new Recipe('A Test recipe', 'Test Recipe for testing',
     //         'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg',
@@ -28,7 +31,9 @@ export class RecipeSevice {
     }
 
     addIngredientsToshoppingList(ingredients:Ingredient[]){
-    this.slService.addIngredients(ingredients);
+        debugger;
+        this.store.dispatch(new ShoppingListActions.AddIngredients(ingredients));
+    // this.slService.addIngredients(ingredients);
     }
 
     getRecipe(index: number){

@@ -6,7 +6,8 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core.module';
 import { HeaderComponent } from './header/header.component';
 import { SharedModule } from './shared/shared.module';
-import { AlertComponent } from './shared/alert/alert.component';
+import {StoreModule} from '@ngrx/store'
+import { ShoppingListReducer } from './shopping-list/shopping-list.reducer';
 
 
 
@@ -18,6 +19,7 @@ import { AlertComponent } from './shared/alert/alert.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    StoreModule.forRoot({shoppingList: ShoppingListReducer}),
     HttpClientModule,
     SharedModule,
     CoreModule
